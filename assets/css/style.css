@@ -1,0 +1,72 @@
+@font-face {
+    font-family:'Vizard-Text';
+    src:url('https://bp-vizard-docs-prod.s3.us-west-1.amazonaws.com/fonts/page/MazzardH-Regular.otf');
+    font-display:swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family:'Vizard-Text-Black';
+    src:url('https://bp-vizard-docs-prod.s3.us-west-1.amazonaws.com/fonts/page/MazzardH-Black.otf');
+    font-display:swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family:'Vizard-Text-Bold';
+    src:url('https://bp-vizard-docs-prod.s3.us-west-1.amazonaws.com/fonts/page/MazzardH-Bold.otf');
+    font-display:swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family:'Vizard-Text-Medium';
+    src:url('https://bp-vizard-docs-prod.s3.us-west-1.amazonaws.com/fonts/page/MazzardH-Medium.otf');
+    font-display:swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family:'Vizard-Text-SemiBold';
+    src:url('https://bp-vizard-docs-prod.s3.us-west-1.amazonaws.com/fonts/page/MazzardH-SemiBold.otf');
+    font-display:swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family:'Vizard-Text';
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
+}
+
+table {
+    margin-bottom: 1rem;
+}
+
+pre {
+    margin-bottom: 1rem;
+}

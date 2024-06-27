@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <meta name="keywords" content="{{ page.keywords }}">
+  <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/rouge.css' | relative_url }}">
+  <style>
+    #logo {
+      margin-bottom: 1rem;
+    }
+
+    #container {
+      display: flex;
+    }
+
+    #content ol {
+      list-style-position: inside;
+    }
+
+    #content {
+      margin-left: 320px;
+      padding: 15px;
+      width: calc(100% - 320px);
+    }
+
+    table {
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #f4f4f4;
+      outline: 1px solid #DFDFDF;
+    }
+    table, th, td {
+      border: 1px solid #DFDFDF;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      max-width: calc(50ch + 20px);
+      word-wrap: break-word;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      overflow: hidden !important;
+    }
+
+    #sidebar {
+      width: 270px;
+      background-image: url("https://cdn-docs.vizard.ai/0-web-static/image/home/first_model_background.webp");
+      padding: 15px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+    }
+    #nav {
+      list-style-type: none;
+      padding: 0;
+      color: white;
+    }
+    #nav li {
+      margin: 10px 0;
+    }
+    #nav a {
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+    #nav a:hover {
+      font-family:'Vizard-Text-Bold';
+    }
+    .nav-active {
+      font-family: 'Vizard-Text-Bold';
+    }
+
+    .code-block {
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      background-color: #4822A5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <nav id="sidebar">
+    <a href="https://vizard.ai/">
+      <img src="https://vizard.ai/img/vizard_new_log.ae00a8df.svg" class="logo">
+    </a>
+    <ul id="nav">
+      <!-- JavaScript will populate this -->
+    </ul>
+  </nav>
+  <div id="content">
+    {{ content }}
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const content = document.getElementById("content");
+    const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const nav = document.getElementById("nav");
+
+    headings.forEach(heading => {
+      const link = document.createElement("a");
+      const listItem = document.createElement("li");
+
+      const id = heading.id || heading.innerText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      heading.id = id;
+
+      // Use query parameter instead of `#`
+      link.href = `?id=${id}`;
+      link.innerText = heading.innerText;
+      link.style.marginLeft = `${(parseInt(heading.tagName.substring(1)) - 1) * 20}px`;
+
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const targetElement = document.getElementById(id);
+        targetElement.scrollIntoView({ behavior: "smooth" });
+
+        // Update active link
+        const links = nav.querySelectorAll("a");
+        links.forEach(link => link.classList.remove("nav-active"));
+        link.classList.add("nav-active");
+
+        // Update URL with query parameter
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.set('id', id);
+        window.history.pushState(null, null, newUrl);
+      });
+
+      listItem.appendChild(link);
+      nav.appendChild(listItem);
+    });
+
+    // Handle initial URL with query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id) {
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+
+        // Update active link
+        const activeLink = nav.querySelector(`a[href="?id=${id}"]`);
+        if (activeLink) {
+          const links = nav.querySelectorAll("a");
+          links.forEach(link => link.classList.remove("nav-active"));
+          activeLink.classList.add("nav-active");
+        }
+      } else {
+        // If the id does not exist, redirect to home and scroll to top
+        window.location.href = '/';
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // Add copy button functionality
+    const codeBlocks = document.querySelectorAll("pre");
+
+    codeBlocks.forEach(codeBlock => {
+      const copyButton = document.createElement("button");
+      copyButton.className = "copy-button";
+      copyButton.innerText = "Copy";
+      copyButton.addEventListener("click", function() {
+        const textArea = document.createElement("textarea");
+        textArea.value = codeBlock.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        copyButton.innerText = "Copied!";
+        setTimeout(function() {
+          copyButton.innerText = "Copy";
+        }, 2000);
+      });
+
+      codeBlock.parentElement.classList.add("code-block");
+      codeBlock.parentElement.appendChild(copyButton);
+    });
+  });
+</script>
+</body>
+</html>
