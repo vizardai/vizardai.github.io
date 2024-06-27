@@ -9,11 +9,13 @@ keywords: open api, video editing, video editor, text-based editor, online scree
 
 ## Step 1: Generate your API key {#generate-api-key}
 
-1. Navigate to your **Workspace-Account-API Key**
+1\. Navigate to your **Workspace-Account-API Key**
 
 ![q_s_1.png]({{ site.baseurl }}/assets/pics/quickstart_step1_1.png)
 
-2. Click the "**Generate API Key**" button. Your unique API key will be displayed within seconds. **Note**: This feature requires a Pro plan.
+2\. Click the "**Generate API Key**" button. Your unique API key will be displayed within seconds. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;**Note**: This feature requires a Pro plan.
 
 **Important**: Treat your API key like a password. Keep it confidential and do not share it with anyone.
 
@@ -166,7 +168,7 @@ mp4, 3gp, avi, mov
 import requests
 import time
 
-VIZARDAI_API_KEY = "YOUR VIZARD AI API KEY"
+VIZARDAI_API_KEY = "YOUR_VIZARD_AI_API_KEY"
 
 PROJECT_NAME = "api-vizard-sample"
 VIDEO_URL = "https://cdn-docs.vizard.ai/openapi/sample.mp4"
