@@ -10,22 +10,69 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/rouge.css' | relative_url }}">
   <style>
-    #logo {
-      margin-bottom: 1rem;
+    /* style for PC */
+    @media only screen and (min-width: 1024px) {
+      #sidebar {
+        width: 270px;
+        background-image: url("https://cdn-docs.vizard.ai/0-web-static/image/home/first_model_background.webp");
+        padding: 15px;
+        height: 100vh;
+        overflow-y: auto;
+        position: fixed;
+      }
+      #content {
+        margin-left: 320px;
+        margin-right: 20px;
+        margin-top: 10px;
+        width: calc(100% - 350px);
+      }
+      .mobile-header {
+        display: none;
+      }
+    }
+
+    /* style for Mobile */
+    @media only screen and (max-width: 1023px) {
+      #sidebar {
+        display: none;
+      }
+
+      #container {
+        width: 100%;
+        min-width: 100vw;
+      }
+
+      #content {
+        margin: 15px;
+        width: 100%;
+      }
+
+      .code-block {
+        width: 95vw;
+        overflow-x: auto; /* Add horizontal scroll */
+      }
+
+      .mobile-header {
+        width: 100%;
+        min-width: 500px;
+        height: 60px;
+        background-image: url("https://cdn-docs.vizard.ai/0-web-static/image/home/first_model_background.webp");
+        display: flex;
+        align-items: center;
+      }
+
+      #mobile-logo {
+        margin-left: 10px;
+      }
     }
 
     #container {
       display: flex;
+      flex-direction: column;
     }
 
     #content ol {
       list-style-position: inside;
-    }
-
-    #content {
-      margin-left: 320px;
-      padding: 15px;
-      width: calc(100% - 320px);
     }
 
     table {
@@ -51,16 +98,10 @@
       border: 1px solid #ddd;
       border-radius: 0.5rem;
       overflow: hidden !important;
+      white-space: pre-wrap; /* Prevents breaking lines */
+      overflow-x: auto; /* Add horizontal scroll */
     }
 
-    #sidebar {
-      width: 270px;
-      background-image: url("https://cdn-docs.vizard.ai/0-web-static/image/home/first_model_background.webp");
-      padding: 15px;
-      height: 100vh;
-      overflow-y: auto;
-      position: fixed;
-    }
     #nav {
       list-style-type: none;
       padding: 0;
@@ -100,6 +141,12 @@
 </head>
 <body>
 <div id="container">
+  <div class="mobile-header">
+    <a href="https://vizard.ai/" id="mobile-logo">
+      <img src="https://vizard.ai/img/vizard_new_log.ae00a8df.svg">
+    </a>
+  </div>
+
   <nav id="sidebar">
     <a href="https://vizard.ai/">
       <img src="https://vizard.ai/img/vizard_new_log.ae00a8df.svg" class="logo">

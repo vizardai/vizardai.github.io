@@ -70,3 +70,11 @@ table {
 pre {
     margin-bottom: 1rem;
 }
+
+#logo {
+    margin-bottom: 1rem;
+}
+
+strong {
+    font-weight: 700;
+}
