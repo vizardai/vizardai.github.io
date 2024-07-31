@@ -142,23 +142,20 @@ mp4, 3gp, avi, mov
 
 ## Maximum video length 
 
-2 hours
+360 mins
 
 ## Maximum file size
 
 8GB
 
-## Clip resolution
-
-720p
-
 ## Video storage
 
-7 days
+As long as you are subscribing
 
 ## Upload minutes
 
-300 minutes per month
+Creator: 800/1200 mins per month
+Team: 6000 mins per month
 
 # Sample Code
 
