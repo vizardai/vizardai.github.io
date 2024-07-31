@@ -154,8 +154,7 @@ As long as you are subscribing
 
 ## Upload minutes
 
-Creator: 800/1200 mins per month
-Team: 6000 mins per month
+Same as the minutes in your plan
 
 # Sample Code
 
