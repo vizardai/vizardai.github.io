@@ -1,2 +1,2 @@
 # vizardai.github.io
-The official github of https://vizard.ai/
+The official github of vizard.ai: https://vizardai.github.io
