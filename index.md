@@ -63,8 +63,8 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 
 ## Step 3: Get short clips {#get-short-clips}
 
-Vizard.ai offers two ways to get short clips. First, it can be obtained by polling. Second, the webhook address can be configured in the workbench. Once the webhook address is configured, Vizard.ai will send the short clips to the webhook address. Either way, you'll get the same content.
-Please note: for webhook address, we currently only do one callback, please make sure your server is available, otherwise you will have to poll the clip results.
+Vizard.ai offers two ways to get short clips. First, it can be obtained by polling. Second, the webhook address can be configured in the workbench. Once the webhook address is configured, Vizard.ai will send short clips to the webhook address by posting json content, please process the request body to get short clips. Either way, you'll get the same json content.
+Please note: for webhook address, we currently only do one callback, please make sure your server is available, otherwise you will have to poll short clips.
 
 ### Poll Request {#polling-short-clips-request}
 
