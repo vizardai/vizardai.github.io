@@ -61,9 +61,12 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account |
 | projectid    | string    | Used for polling short clips generation                                                                       |
 
-## Step 3: Polling short clips {#polling-short-clips}
+## Step 3: Get short clips {#get-short-clips}
 
-### Request {#polling-short-clips-request}
+Vizard.ai offers two ways to get short clips. First, it can be obtained by polling. Second, the webhook address can be configured in the workbench. Once the webhook address is configured, Vizard.ai will send the short clips to the webhook address. Either way, you'll get the same content.
+Please note: for webhook address, we currently only do one callback, please make sure your server is available, otherwise you will have to poll the clip results.
+
+### Poll Request {#polling-short-clips-request}
 
 **URL**
 
@@ -85,7 +88,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 |-----------------|--------------------------|----------|-----|
 | projectId | Long      | YES      |  Get the video export result by projectId. <br/>Please append it to https request url, behind ’/query/’. |
 
-### Response {#polling-short-clips-response}
+### Poll Response {#polling-short-clips-response}
 
 **Content-Type**: application/json
 
@@ -100,6 +103,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 
 | Field Name     | Data Type | Description                   |
 |----------------|-----------|-------------------------------|
+| projectId      | Long      | The id of project.            |
 | videoUrl       | string    | Video download URL.           |
 | videoMsDuration| long      | Video duration in milliseconds.|
 | title          | string    | Video title.                  |
