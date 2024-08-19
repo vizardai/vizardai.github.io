@@ -31,7 +31,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 
 **Rate Limits:** 3 requests per minute
 
-**Hedaers**
+**Headers**
 
 | Name of Header           | Value                  | Required |
 |---------------------------|------------------------|----------|
