@@ -117,26 +117,42 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 
 ## Supported video languages
 
-| Language Code | Language Name |
-|---------------|---------------|
-| ar            | Arabic        |
-| nl            | Dutch         |
-| en            | English       |
-| fr            | French        |
-| de            | German        |
-| hi            | Hindi         |
-| id            | Indonesian    |
-| it            | Italian       |
-| ja            | Japanese      |
-| ko            | Korean        |
-| zh            | Mandarin      |
-| zh-TW         | Mandarin      |
-| pt            | Portuguese    |
-| ru            | Russian       |
-| es            | Spanish       |
-| tr            | Turkish       |
-| uk            | Ukrainian     |
-| vi            | Vietnamese    |
+| Language Code | Language Name                  |
+|---------------|--------------------------------|
+| en            | English                        |
+| ar            | Arabic (عربي)                  |
+| bg            | Bulgarian (български)          |
+| hr            | Croatian (Hrvatski)            |
+| cs            | Czech (čeština)                |
+| da            | Danish (Dansk)                 |
+| nl            | Dutch (Nederlands)             |
+| fi            | Finnish (Suomi)                |
+| fr            | French (Français)              |
+| de            | German (Deutsch)               |
+| el            | Greek(Ελληνικά)                |
+| iw            | Hebrew (עִברִית)               |
+| hi            | Hindi (हिंदी)                  |
+| hu            | Hungarian (Magyar nyelv)       |
+| id            | Indonesian (Bahasa Indonesia)  |
+| it            | Italian (Italiano)             |
+| ja            | Japanese (日本語)                 |
+| ko            | Korean (한국어)                   |
+| lt            | Lithuanian (Lietuvių kalba)    |
+| mal           | Malay (Melayu)                 |
+| zh            | Mandarin - Simplified (普通话-简体) |
+| zh-TW         | Mandarin - Traditional (國語-繁體) |
+| no            | Norwegian (Norsk)              |
+| pl            | Polish (Polski)                |
+| pt            | Portuguese (Português)         |
+| ro            | Romanian (Limba română)        |
+| ru            | Russian (Pусский)              |
+| sr            | Serbian (Српски)               |
+| sk            | Slovak (Slovenský)             |
+| es            | Spanish (Español)              |
+| sv            | Swedish (Svenska)              |
+| tr            | Turkish (Türkçe)               |
+| uk            | Ukrainian (Україна)            |
+| vi            | Vietnamese (Tiếng Việt)        |
 
 ## Supported file types 
 
