@@ -117,42 +117,42 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 
 ## Supported video languages
 
-| Language Code | Language Name                  |
-|---------------|--------------------------------|
-| en            | English                        |
-| ar            | Arabic (عربي)                  |
-| bg            | Bulgarian (български)          |
-| hr            | Croatian (Hrvatski)            |
-| cs            | Czech (čeština)                |
-| da            | Danish (Dansk)                 |
-| nl            | Dutch (Nederlands)             |
-| fi            | Finnish (Suomi)                |
-| fr            | French (Français)              |
-| de            | German (Deutsch)               |
-| el            | Greek(Ελληνικά)                |
-| iw            | Hebrew (עִברִית)               |
-| hi            | Hindi (हिंदी)                  |
-| hu            | Hungarian (Magyar nyelv)       |
-| id            | Indonesian (Bahasa Indonesia)  |
-| it            | Italian (Italiano)             |
-| ja            | Japanese (日本語)                 |
-| ko            | Korean (한국어)                   |
-| lt            | Lithuanian (Lietuvių kalba)    |
-| mal           | Malay (Melayu)                 |
-| zh            | Mandarin - Simplified (普通话-简体) |
-| zh-TW         | Mandarin - Traditional (國語-繁體) |
-| no            | Norwegian (Norsk)              |
-| pl            | Polish (Polski)                |
-| pt            | Portuguese (Português)         |
-| ro            | Romanian (Limba română)        |
-| ru            | Russian (Pусский)              |
-| sr            | Serbian (Српски)               |
-| sk            | Slovak (Slovenský)             |
-| es            | Spanish (Español)              |
-| sv            | Swedish (Svenska)              |
-| tr            | Turkish (Türkçe)               |
-| uk            | Ukrainian (Україна)            |
-| vi            | Vietnamese (Tiếng Việt)        |
+| Language Name                  | Language Code |
+|--------------------------------|---------------|
+| English                        | en            |
+| Arabic (عربي)                  | ar            |
+| Bulgarian (български)          | bg            |
+| Croatian (Hrvatski)            | hr            |
+| Czech (čeština)                | cs            |
+| Danish (Dansk)                 | da            |
+| Dutch (Nederlands)             | nl            |
+| Finnish (Suomi)                | fi            |
+| French (Français)              | fr            |
+| German (Deutsch)               | de            |
+| Greek(Ελληνικά)                | el            |
+| Hebrew (עִברִית)               | iw            |
+| Hindi (हिंदी)                  | hi            |
+| Hungarian (Magyar nyelv)       | hu            |
+| Indonesian (Bahasa Indonesia)  | id            |
+| Italian (Italiano)             | it            |
+| Japanese (日本語)                 | ja            |
+| Korean (한국어)                   | ko            |
+| Lithuanian (Lietuvių kalba)    | lt            |
+| Malay (Melayu)                 | mal           |
+| Mandarin - Simplified (普通话-简体) | zh            |
+| Mandarin - Traditional (國語-繁體) | zh-TW         |
+| Norwegian (Norsk)              | no            |
+| Polish (Polski)                | pl            |
+| Portuguese (Português)         | pt            |
+| Romanian (Limba română)        | ro            |
+| Russian (Pусский)              | ru            |
+| Serbian (Српски)               | sr            |
+| Slovak (Slovenský)             | sk            |
+| Spanish (Español)              | es            |
+| Swedish (Svenska)              | sv            |
+| Turkish (Türkçe)               | tr            |
+| Ukrainian (Україна)            | uk            |
+| Vietnamese (Tiếng Việt)        | vi            |
 
 ## Supported file types 
 
