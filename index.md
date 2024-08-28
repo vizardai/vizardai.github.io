@@ -132,7 +132,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 | zh            | Mandarin      |
 | zh-TW         | Mandarin      |
 | pt            | Portuguese    |
-| Russian       | (No code provided) |
+| ru            | Russian       |
 | es            | Spanish       |
 | tr            | Turkish       |
 | uk            | Ukrainian     |
