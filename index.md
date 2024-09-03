@@ -19,6 +19,8 @@ keywords: open api, video editing, video editor, text-based editor, online scree
 
 ## Step 2: Post a long video {#post-a-long-video}
 
+Please note that the Vizard.ai API currently supports videos that can be downloaded directly through your browser. The Vizard.ai API will soon support the kinds of links you see in the workspace.
+
 ### Request {#post-a-long-video-request}
 
 **URL**
@@ -43,12 +45,12 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | Name           | DataType | Required | Description                                                                                                         |
 |----------------|----------|----------|---------------------------------------------------------------------------------------------------------------------|
 | lang           | string   | YES      | Language code of video.                                                                                             |
-| videoUrl       | string   | YES      | The URL of the remote video should start with either http or https and must be downloadable.                        |
+| videoUrl       | string   | YES      | The URL of the remote video should start with either http or https and must be available to download directly through a browser.|
 | ext            | string   | YES      | The extension of the video file. Options: mp4, 3gp, avi, mov.                                                       |
 | preferLength   | array    | YES      | The duration of the clipped video: <br/> 0, auto; <br/> 1, less than 30s; <br/> 2, 30s to 60s; <br/> 3, 60s to 90s; <br/> 4, 90s to 3min. |
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
-| subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0, off; <br/> 1, on; (default value)                                                                     |
-| headlineSwitch | int      | NO       | Headline switch. <br/> 0, off; <br/> 1, on; (default value)                                                                     |
+| subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
+| headlineSwitch | int      | NO       | Headline switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
 
 ### Response {#post-a-long-video-response}
 
