@@ -176,6 +176,10 @@ As long as you are subscribing
 
 Same as the minutes in your plan
 
+## Resolution of the short clips
+
+Vizard.ai exports as high resolution video as possible based on the width and height of the original video, as well as the aspect ratio of the clip video. In general, the smallest side of the clip video will be higher than the smallest side of the original video.
+
 # Sample Code
 
 ## Python {#sample-code-python}
