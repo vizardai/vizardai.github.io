@@ -47,11 +47,11 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | lang           | string   | YES      | Language code of video.                                                                                             |
 | videoUrl       | string   | YES      | The URL of the remote video should start with either http or https and must be available to download directly through a browser.|
 | ext            | string   | NO       | The extension of the video file. Options: mp4, 3gp, avi, mov. If videoType is 1, 'ext' needs to be set.             |
-| preferLength   | array    | YES      | The duration of the clipped video: <br/> 0, auto; <br/> 1, less than 30s; <br/> 2, 30s to 60s; <br/> 3, 60s to 90s; <br/> 4, 90s to 3min. |
+| preferLength   | array    | YES      | The duration of the clipped video: <br/> 0: auto; <br/> 1: less than 30s; <br/> 2: 30s to 60s; <br/> 3: 60s to 90s; <br/> 4: 90s to 3min. |
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
-| subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
-| headlineSwitch | int      | NO       | Headline switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
-| videoType      | int      | NO       | Headline switch. <br/> 1, videos that can be downloaded directly through web browser(default value); <br/> 2, YouTube link; <br/> 3, Google Drive link; <br/> 3, Vimeo link; <br/> 4, StreamYard link.|
+| subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
+| headlineSwitch | int      | NO       | Headline switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
+| videoType      | int      | NO       | Headline switch. <br/> 1: videos that can be downloaded directly through web browser(default value); <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 
 ### Response {#post-a-long-video-response}
 
