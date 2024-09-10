@@ -19,7 +19,7 @@ keywords: open api, video editing, video editor, text-based editor, online scree
 
 ## Step 2: Post a long video {#post-a-long-video}
 
-Please note that the Vizard.ai API currently supports videos that can be downloaded directly through your browser. The Vizard.ai API will soon support the kinds of links you see in the workspace.
+Please note that the Vizard.ai API currently supports videos that can be downloaded directly through web browser, and YouTube, Google Drive, Vimeo, StreamYard link.
 
 ### Request {#post-a-long-video-request}
 
@@ -46,11 +46,12 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 |----------------|----------|----------|---------------------------------------------------------------------------------------------------------------------|
 | lang           | string   | YES      | Language code of video.                                                                                             |
 | videoUrl       | string   | YES      | The URL of the remote video should start with either http or https and must be available to download directly through a browser.|
-| ext            | string   | YES      | The extension of the video file. Options: mp4, 3gp, avi, mov.                                                       |
+| ext            | string   | NO       | The extension of the video file. Options: mp4, 3gp, avi, mov. If videoType is 1, 'ext' needs to be set.             |
 | preferLength   | array    | YES      | The duration of the clipped video: <br/> 0, auto; <br/> 1, less than 30s; <br/> 2, 30s to 60s; <br/> 3, 60s to 90s; <br/> 4, 90s to 3min. |
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
 | subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
 | headlineSwitch | int      | NO       | Headline switch. <br/> 0, off; <br/> 1, on; (default value)                                                         |
+| videoType      | int      | NO       | Headline switch. <br/> 1, videos that can be downloaded directly through web browser(default value); <br/> 2, YouTube link; <br/> 3, Google Drive link; <br/> 3, Vimeo link; <br/> 4, StreamYard link.|
 
 ### Response {#post-a-long-video-response}
 
@@ -60,7 +61,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 
 | Data Name    | Data Type | Description                                                                                                   |
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
-| code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account |
+| code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
 | projectid    | string    | Used for polling short clips generation                                                                       |
 
 ## Step 3: Get short clips {#get-short-clips}
@@ -98,7 +99,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 
 | Data Name | Data Type      | Description                                                                                                           |
 |-----------|----------------|-----------------------------------------------------------------------------------------------------------------------|
-| code      | int            | 1000: processing; <br/>2000: clipping succeeded; <br/>4001: invalid api key; 4002: clipping failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account |
+| code      | int            | 1000: processing; <br/>2000: clipping succeeded; <br/>4001: invalid api key; <br/>4002: clipping failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account; <br/>4008: failed to download from video url|
 | videos    | array          | A list of URLs for video clips. The video URL is valid for 3 hours. Please ensure that you complete the download within this time frame. If the 3-hour period expires, you can query again to obtain a new valid video URL. It is important to note that after 7 days, the video will be permanently deleted. |
 
 **Video**
