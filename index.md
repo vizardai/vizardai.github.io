@@ -52,6 +52,8 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
 | headlineSwitch | int      | NO       | Headline switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
 | videoType      | int      | NO       | Headline switch. <br/> 1: videos that can be downloaded directly through web browser(default value); <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
+| maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
+| keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
 
 ### Response {#post-a-long-video-response}
 
@@ -63,6 +65,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
 | code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
 | projectid    | string    | Used for polling short clips generation                                                                       |
+| shareLink    | string    | The share link of project, when your subscription is team plan.                                               |
 
 ## Step 3: Get short clips {#get-short-clips}
 
@@ -101,6 +104,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 |-----------|----------------|-----------------------------------------------------------------------------------------------------------------------|
 | code      | int            | 1000: processing; <br/>2000: clipping succeeded; <br/>4001: invalid api key; <br/>4002: clipping failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account; <br/>4008: failed to download from video url|
 | videos    | array          | A list of URLs for video clips. The video URL is valid for 3 hours. Please ensure that you complete the download within this time frame. If the 3-hour period expires, you can query again to obtain a new valid video URL. It is important to note that after 7 days, the video will be permanently deleted. |
+| shareLink | string         | The share link of project, when your subscription is team plan.                                     |
 
 **Video**
 
