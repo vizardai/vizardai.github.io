@@ -51,7 +51,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
 | subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
 | headlineSwitch | int      | NO       | Headline switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
-| videoType      | int      | NO       | 1: videos that can be downloaded directly through web browser(default value); <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
+| videoType      | int      | YES       | 1: videos that can be downloaded directly through web browser; <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
 
@@ -202,6 +202,7 @@ LANG = "en"
 PREFER_LENGTH = "[0]"
 SUBTITLE_SWITCH = 1
 HEADLINE_SWITCH = 1
+VIDEO_TYPE = 1
 
 headers = {
    "Content-Type": "application/json",
@@ -217,6 +218,7 @@ def create_project():
        'preferLength': PREFER_LENGTH,
        'subtitleSwitch': SUBTITLE_SWITCH,
        'headlineSwitch': HEADLINE_SWITCH,
+       'videoType': VIDEO_TYPE,
    }
    create_url = "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create"
 
