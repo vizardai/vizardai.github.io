@@ -51,7 +51,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
 | subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
 | headlineSwitch | int      | NO       | Headline switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
-| videoType      | int      | NO       | Headline switch. <br/> 1: videos that can be downloaded directly through web browser(default value); <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
+| videoType      | int      | NO       | 1: videos that can be downloaded directly through web browser(default value); <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
 
