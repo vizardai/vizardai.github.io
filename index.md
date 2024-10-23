@@ -45,13 +45,13 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | Name           | DataType | Required | Description                                                                                                         |
 |----------------|----------|----------|---------------------------------------------------------------------------------------------------------------------|
 | lang           | string   | YES      | Language code of video.                                                                                             |
-| videoUrl       | string   | YES      | The URL of the remote video should start with either http or https and must be available to download directly through a browser.|
+| videoUrl       | string   | YES      | The URL of the remote video should start with either http or https.                                                 |
 | ext            | string   | NO       | The extension of the video file. Options: mp4, 3gp, avi, mov. If videoType is 1, 'ext' needs to be set.             |
 | preferLength   | array    | YES      | The duration of the clipped video: <br/> 0: auto; <br/> 1: less than 30s; <br/> 2: 30s to 60s; <br/> 3: 60s to 90s; <br/> 4: 90s to 3min. |
 | projectName    | string   | NO       | The name of the long video.                                                                                         |
 | subtitleSwitch | int      | NO       | Subtitle switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
 | headlineSwitch | int      | NO       | Headline switch. <br/> 0: off; <br/> 1: on; (default value)                                                         |
-| videoType      | int      | YES       | 1: videos that can be downloaded directly through web browser; <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
+| videoType      | int      | YES       | 1: remote video file that can be downloaded directly through web browser; <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
 
@@ -269,4 +269,133 @@ def main():
 
 if __name__ == "__main__":
    main()
+```
+## Java {#sample-code-java}
+
+```java
+import java.io.*;
+import java.net.*;
+import org.json.*;
+
+public class VizardSample {
+    private static final String VIZARDAI_API_KEY = "YOUR_API_KEY";
+
+    public static void main(String[] args) {
+        String projectId = createProject();
+        queryClips(projectId);
+    }
+
+    private static String createProject() {
+        try {
+            URL url = new URL("https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("VIZARDAI_API_KEY", VIZARDAI_API_KEY);
+            conn.setDoOutput(true);
+
+            // JSONObject jsonObject = buildRequestParametersForRemoteVideoFile();
+            JSONObject jsonObject = buildRequestParametersForYouTubeLink();
+
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(jsonObject.toString().getBytes("utf-8"));
+            }
+
+            int status = conn.getResponseCode();
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+            }
+
+            JSONObject responseJson = new JSONObject(response.toString());
+            if (status == HttpURLConnection.HTTP_OK && responseJson.getInt("code") == 2000) {
+                String projectId = String.valueOf(responseJson.getInt("projectId"));
+                System.out.println("Project created, and projectId is " + projectId);
+                return projectId;
+            } else {
+                System.out.println("Create error: " + responseJson.toString());
+                return "";
+            }
+        } catch (Exception e) {
+            System.out.println("Create request failed: " + e.getMessage());
+            return "";
+        }
+    }
+
+    private static void queryClips(String projectId) {
+        if (projectId == null || projectId.isEmpty()) {
+            System.out.println("projectId is empty");
+            return;
+        }
+        while (true) {
+            try {
+                System.out.println("Querying clips...");
+                URL url = new URL("https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/" + projectId);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("VIZARDAI_API_KEY", VIZARDAI_API_KEY);
+
+                StringBuilder response = new StringBuilder();
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                }
+
+                JSONObject responseJson = new JSONObject(response.toString());
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    if (responseJson.getInt("code") == 2000) {
+                        System.out.println("Clipping succeeded.");
+                        System.out.println(responseJson.toString());
+                        break;
+                    } else if (responseJson.getInt("code") == 1000) {
+                        Thread.sleep(5000);
+                        continue;
+                    } else {
+                        System.out.println("Clipping error:");
+                        System.out.println(responseJson.toString());
+                        break;
+                    }
+                } else {
+                    System.out.println("Query request failed: " + response.toString());
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Query request failed: " + e.getMessage());
+                break;
+            }
+        }
+    }
+
+    private static JSONObject buildRequestParametersForRemoteVideoFile() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("videoType", 1);
+        jsonObject.put("projectName", "api-sample-remote-video-file");
+        jsonObject.put("videoUrl", "https://cdn-docs.vizard.ai/openapi/sample.mp4");
+        jsonObject.put("ext", "mp4");
+        jsonObject.put("lang", "en");
+        jsonObject.put("preferLength", "[0]");
+        jsonObject.put("subtitleSwitch", 1);
+        jsonObject.put("headlineSwitch", 1);
+        return jsonObject;
+    }
+
+    private static JSONObject  buildRequestParametersForYouTubeLink() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("videoType", 2);
+        jsonObject.put("projectName", "api-sample-youtube");
+        jsonObject.put("videoUrl", "https://www.youtube.com/watch?v=qeu9ek_HygM");
+        jsonObject.put("lang", "en");
+        jsonObject.put("preferLength", "[0]");
+        jsonObject.put("subtitleSwitch", 1);
+        jsonObject.put("headlineSwitch", 1);
+        return jsonObject;
+    }
+
+}
 ```
