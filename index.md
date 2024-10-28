@@ -64,15 +64,15 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | Data Name    | Data Type | Description                                                                                                   |
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
 | code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
-| projectid    | string    | Used for polling short clips generation                                                                       |
+| projectid    | string    | Used for polling clips generation                                                                       |
 | shareLink    | string    | The share link of project, when your subscription is team plan.                                               |
 
-## Step 3: Get short clips {#get-short-clips}
+## Step 3: Get clips {#get-clips}
 
-Vizard.ai offers two ways to get short clips. First, it can be obtained by polling. Second, the webhook address can be configured in the workbench. Once the webhook address is configured, Vizard.ai will send short clips to the webhook address by posting json content, please process the request body to get short clips. Either way, you'll get the same json content.
-Please note: for webhook address, we currently only do one callback, please make sure your server is available, otherwise you will have to poll short clips.
+Vizard.ai offers two ways to get clips. First, it can be obtained by polling. Second, the webhook address can be configured in the workbench. Once the webhook address is configured, Vizard.ai will send  clips to the webhook address by posting json content, please process the request body to get clips. Either way, you'll get the same json content.
+Please note: for webhook address, we currently only do one callback, please make sure your server is available, otherwise you will have to poll clips.
 
-### Poll Request {#polling-short-clips-request}
+### Poll Request {#polling-clips-request}
 
 **URL**
 
@@ -94,7 +94,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 |-----------------|--------------------------|----------|-----|
 | projectId | Long      | YES      |  Get the video export result by projectId. <br/>Please append it to https request url, behind ’/query/’. |
 
-### Poll Response {#polling-short-clips-response}
+### Poll Response {#polling-clips-response}
 
 **Content-Type**: application/json
 
@@ -181,7 +181,7 @@ As long as you are subscribing
 
 Same as the minutes in your plan
 
-## Resolution of the short clips
+## Resolution of the clips
 
 Vizard.ai exports as high resolution video as possible based on the width and height of the original video, as well as the aspect ratio of the clip video. In general, the smallest side of the clip video will be higher than the smallest side of the original video.
 
@@ -237,11 +237,11 @@ def create_project():
        project_id = ""
    return project_id
 
-def query_videos(project_id):
+def query_clips(project_id):
    query_url = "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/" + str(project_id)
 
    while (True):
-       print('querying videos')
+       print('querying clips...')
        response = requests.get(query_url, headers=headers)
        if response.status_code == 200:
            query_result = response.json()
@@ -265,7 +265,7 @@ def query_videos(project_id):
 def main():
    project_id = create_project()
    if (project_id != ""):
-       query_videos(project_id)
+       query_clips(project_id)
 
 if __name__ == "__main__":
    main()
