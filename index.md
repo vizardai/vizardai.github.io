@@ -7,7 +7,7 @@ keywords: open api, video editing, video editor, text-based editor, online scree
 
 # Quickstart {#quickstart}
 
-## Step 1: Generate your API key {#generate-api-key}
+## Step 1: Generate API key {#generate-api-key}
 
 1\. Navigate to your **Workspace-Invite-API**
 
@@ -122,7 +122,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 
 # Appendix
 
-## Supported video languages
+## Video languages
 
 | Language Name                  | Language Code |
 |--------------------------------|---------------|
@@ -161,7 +161,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 | Ukrainian (Україна)            | uk            |
 | Vietnamese (Tiếng Việt)        | vi            |
 
-## Supported file types 
+## File types 
 
 mp4, 3gp, avi, mov
 
