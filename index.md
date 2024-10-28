@@ -399,3 +399,194 @@ public class VizardSample {
 
 }
 ```
+## Go {#sample-code-go}
+
+```go
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"time"
+)
+
+const (
+	vizardAIKey  = "YOUR_API_KEY"
+	createURL    = "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create"
+	queryURLBase = "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/"
+	contentType  = "application/json"
+)
+
+func main() {
+	projectId := createProject()
+	if projectId != "" {
+		queryClips(projectId)
+	}
+}
+
+func createProject() string {
+	client := &http.Client{}
+
+	jsonData := buildRequestParametersForRemoteVideoFile()
+	// jsonData := buildRequestParametersForYouTubeLink()
+
+	req, err := http.NewRequest("POST", createURL, bytes.NewBuffer(jsonData))
+	if err != nil {
+		fmt.Println("Create request failed:", err)
+		return ""
+	}
+
+	req.Header.Set("Content-Type", contentType)
+	req.Header.Set("VIZARDAI_API_KEY", vizardAIKey)
+
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Create request failed:", err)
+		return ""
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Create request failed:", err)
+		return ""
+	}
+
+	var responseJson map[string]interface{}
+	json.Unmarshal(body, &responseJson)
+
+	if resp.StatusCode == http.StatusOK {
+		if responseJson["code"].(float64) == 2000 {
+			projectId := fmt.Sprintf("%.0f", responseJson["projectId"])
+			fmt.Println("Project created, and projectId is", projectId)
+			return projectId
+		} else {
+			fmt.Println("Create error:", string(body))
+			return ""
+		}
+	} else {
+		fmt.Println("Create request failed:", string(body))
+		return ""
+	}
+}
+
+func queryClips(projectId string) {
+	if projectId == "" {
+		fmt.Println("projectId is empty")
+		return
+	}
+	fmt.Println("Querying clips...")
+	client := &http.Client{}
+	for {
+		req, err := http.NewRequest("GET", queryURLBase+projectId, nil)
+		if err != nil {
+			fmt.Println("Query request failed:", err)
+			break
+		}
+
+		req.Header.Set("Content-Type", contentType)
+		req.Header.Set("VIZARDAI_API_KEY", vizardAIKey)
+
+		resp, err := client.Do(req)
+		if err != nil {
+			fmt.Println("Query request failed:", err)
+			break
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Println("Query request failed:", err)
+			break
+		}
+
+		var responseJson map[string]interface{}
+		json.Unmarshal(body, &responseJson)
+
+		if resp.StatusCode == http.StatusOK {
+			if responseJson["code"].(float64) == 2000 {
+				fmt.Println("Clipping succeeded.")
+				fmt.Println(string(body))
+				break
+			} else if responseJson["code"].(float64) == 1000 {
+				time.Sleep(5 * time.Second)
+				continue
+			} else {
+				fmt.Println("Clipping error:")
+				fmt.Println(string(body))
+				break
+			}
+		} else {
+			fmt.Println("Query request failed:", string(body))
+			break
+		}
+	}
+}
+
+func buildRequestParametersForRemoteVideoFile() []byte {
+	jsonData := map[string]interface{}{
+		"videoType":      1,
+		"projectName":    "api-sample-remote-video-file",
+		"videoUrl":       "https://cdn-docs.vizard.ai/openapi/sample.mp4",
+		"ext":            "mp4",
+		"lang":           "en",
+		"preferLength":   "[0]",
+		"subtitleSwitch": 1,
+		"headlineSwitch": 1,
+	}
+	data, _ := json.Marshal(jsonData)
+	return data
+}
+
+func buildRequestParametersForYouTubeLink() []byte {
+	jsonData := map[string]interface{}{
+		"videoType":      2,
+		"projectName":    "api-sample-youtube",
+		"videoUrl":       "https://www.youtube.com/watch?v=qeu9ek_HygM",
+		"lang":           "en",
+		"preferLength":   "[0]",
+		"subtitleSwitch": 1,
+		"headlineSwitch": 1,
+	}
+	data, _ := json.Marshal(jsonData)
+	return data
+}
+```
+## Curl {#sample-code-curl}
+
+```curl
+// create project for remote video file
+curl -X POST "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create" \
+-H "Content-Type: application/json" \
+-H "VIZARDAI_API_KEY: YOUR_VIZARD_AI_API_KEY" \
+-d '{
+  "videoType": 1,
+  "projectName": "api-sample-remote-video-file",
+  "videoUrl": "https://cdn-docs.vizard.ai/openapi/sample.mp4",
+  "ext": "mp4",
+  "lang": "en",
+  "preferLength": "[0]",
+  "subtitleSwitch": 1,
+  "headlineSwitch": 1
+}'
+
+// create project for youtube link
+curl -X POST "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create" \
+-H "Content-Type: application/json" \
+-H "VIZARDAI_API_KEY: YOUR_API_KEY" \
+-d '{
+  "videoType": 2,
+  "projectName": "api-sample-youtube",
+  "videoUrl": "https://www.youtube.com/watch?v=qeu9ek_HygM",
+  "lang": "en",
+  "preferLength": "[0]",
+  "subtitleSwitch": 1,
+  "headlineSwitch": 1
+}'
+
+// query clips
+curl -X GET "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projectId}" \
+-H "Content-Type: application/json" \
+-H "VIZARDAI_API_KEY: YOUR_API_KEY"
+```
