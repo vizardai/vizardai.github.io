@@ -31,7 +31,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 
 **Method:** POST
 
-**Rate Limits:** 3 requests per minute
+**Rate Limits:** 3 requests per minute, and 20 requests per hour
 
 **Headers**
 
