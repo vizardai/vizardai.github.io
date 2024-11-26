@@ -54,6 +54,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | videoType      | int      | YES       | 1: remote video file that can be downloaded directly through web browser; <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
+| templateId     | long     | NO       | Custom template ID (Only for 9:16 aspect ratio video). Supported personal template and template in Brand Kit.       |
 
 ### Response {#post-a-long-video-response}
 
