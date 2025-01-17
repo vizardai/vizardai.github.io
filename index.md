@@ -66,8 +66,9 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | Data Name    | Data Type | Description                                                                                                   |
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
 | code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
-| projectid    | string    | Used for polling clips generation                                                                       |
-| shareLink    | string    | The share link of project, when your subscription is team plan.                                               |
+| projectid    | string    | Used for polling clips generation                                                                              |
+| shareLink    | string    | The share link of project, when your subscription is team plan.                                                |
+| errMsg       | string    | The error message.                                                                                             |
 
 ## Step 3: Get clips {#get-clips}
 
@@ -107,6 +108,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 | code      | int            | 1000: processing; <br/>2000: clipping succeeded; <br/>4001: invalid api key; <br/>4002: clipping failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account; <br/>4008: failed to download from video url|
 | videos    | array          | A list of URLs for video clips. The video URL is valid for 3 hours. Please ensure that you complete the download within this time frame. If the 3-hour period expires, you can query again to obtain a new valid video URL. It is important to note that after 7 days, the video will be permanently deleted. |
 | shareLink | string         | The share link of project, when your subscription is team plan.                                     |
+| errMsg    | string         | The error message.                                                                                  |
 
 **Video**
 
