@@ -65,7 +65,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 
 | Data Name    | Data Type | Description                                                                                                   |
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
-| code         | int       | 2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
+| code         | int       | -1000: invalid request parameter; <br/>2000: created succeeded; <br/>4001: invalid api key; <br/>4002: created failed; <br/>4003: requests exceeded the limit; <br/>4004: unsupported video format; <br/>4005: invalid video url; <br/>4006: illegal parameter; <br/>4007: insufficient remaining time in the account.|
 | projectid    | string    | Used for polling clips generation                                                                              |
 | shareLink    | string    | The share link of project, when your subscription is team plan.                                                |
 | errMsg       | string    | The error message.                                                                                             |
