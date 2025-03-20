@@ -596,29 +596,27 @@ curl -X GET "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/
 ```
 # Postman
 
-## Step 1 Import Collections {#import-collections-into-postman}
+## Step 1: Import Collections {#import-collections-into-postman}
 **Step 1.1**
 Click import<br>
-![click-import](/assets/postman/1.1.jpg)
+![click-import](/assets/postman/1.1.jpg)<br>
 **Step 1.2**
 Choose the Collections file downloaded locally. v2 supports Postman5+, v2.1 supports Postman7+.<br>
-![choose-collections-file](/assets/postman/1.2.jpg)
+![choose-collections-file](/assets/postman/1.2.jpg)<br>
 **Step 1.3**
 If the import is successful, view the results of the import in Collections and you will see the two interfaces for openAPI.<br>
-![view-collections](/assets/postman/1.3.jpg)
-## Step 2 Create Project {#creat-project-in-postman}
+![view-collections](/assets/postman/1.3.jpg)<br>
+## Step 2: Create Project {#creat-project-in-postman}
 **Step 2.1**
 Fill in the value for VIZARDAI_API_KEY in headers<br>
-![fill-api-key](/assets/postman/2.1.jpg)
+![fill-api-key](/assets/postman/2.1.jpg)<br>
 **Step 2.2**
 Fill in the Body or modify the value of the example, after completing the click Send, the project will be created, record the value of the projectId field in the Response, used to query the results of the creation of the project and progress.<br>
-![fill-body](/assets/postman/2.2.jpg)
-## Step 3 Query Project {#query-project-in-postman}
+![fill-body](/assets/postman/2.2.jpg)<br>
+## Step 3: Query Project {#query-project-in-postman}
 **Step 3.1**
 Fill in the value for VIZARDAI_API_KEY in headers<br>
-![fill-header](/assets/postman/3.1.jpg)
+![fill-header](/assets/postman/3.1.jpg)<br>
 **Step 3.2**
 Change {projectId} to the projectId you got when you created the project, and click Send to get the progress of the project creation.<br>
 ![change-projeectId](/assets/postman/3.2.jpg)
-
-
