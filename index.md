@@ -600,23 +600,28 @@ curl -X GET "https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/
 Importing Collections into Postman
 ### Step 1.1 
 Click import
+![click-import](/assets/postman/1.1.jpg)
 ### Step 1.2 
 Choose the Collections file downloaded locally. v2 supports Postman5+, v2.1 supports Postman7+.
+![choose-collections-file](/assets/postman/1.2.jpg)
 ### Step 1.3 
 If the import is successful, view the results of the import in Collections and you will see the two interfaces for openAPI.
-
+![view-collections](/assets/postman/1.3.jpg)
 ## Step 2
 Creating Projects with Postman
 ### Step 2.1
 Fill in the value for VIZARDAI_API_KEY in headers
+![fill-api-key](/assets/postman/2.1.jpg)
 ### Step 2.2 
 Fill in the Body or modify the value of the example, after completing the click Send, the project will be created, record the value of the projectId field in the Response, used to query the results of the creation of the project and progress.
-
+![fill-body](/assets/postman/2.2.jpg)
 ## Step 3
 Querying Project Creation Progress in Postman
 ### Step 3.1 
 Fill in the value for VIZARDAI_API_KEY in headers
+![fill-header](/assets/postman/3.1.jpg)
 ### Step 3.2
 Change {projectId} to the projectId you got when you created the project, and click Send to get the progress of the project creation.
+![change-projeectId](/assets/postman/3.2.jpg)
 
 
