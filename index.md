@@ -55,7 +55,7 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
 | templateId     | long     | NO       | Custom template ID (Only for 9:16 aspect ratio video). Supported personal template and template in Brand Kit.       |
-| removeSilenceSwitch | int | NO       | Remove silence switch. <br/> 0: off; <br/> 1: on; (default value)                                                   |
+| removeSilenceSwitch | int | NO       | Remove silence switch. <br/> 0: off; (default value)<br/> 1: on;                                                    |
 
 ### Response {#post-a-long-video-response}
 
