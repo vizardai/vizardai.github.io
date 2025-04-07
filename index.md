@@ -54,8 +54,9 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/create
 | videoType      | int      | YES       | 1: remote video file that can be downloaded directly through web browser; <br/> 2: YouTube link; <br/> 3: Google Drive link; <br/> 4: Vimeo link; <br/> 5: StreamYard link.|
 | maxClipNumber  | int      | NO       | The maximum number of clips. Range: [0, 100].                                                                       |
 | keywords       | string   | NO       | Keywords to include relevant content. If multiple keywords, separate them with commas.                              |
-| templateId     | long     | NO       | Custom template ID (Only for 9:16 aspect ratio video). Supported personal template and template in Brand Kit.       |
+| templateId     | long     | NO       | Custom template ID (The ratio of template is same as 'ratioOfClip'). Supported personal template and template in Brand Kit.       |
 | removeSilenceSwitch | int | NO       | Remove silence switch. <br/> 0: off; (default value)<br/> 1: on;                                                    |
+| ratioOfClip    | int      | NO       | The ratio of clip: <br/> 1: 9:16; <br/> 2: 1:1; <br/> 3: 4:5; <br/> 4: 16:9.                                        |
 
 ### Response {#post-a-long-video-response}
 
@@ -122,7 +123,43 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 | viralScore     | float     | AI clip score.                |
 | transcript     | string    | Video text content.           |
 | relatedTopic   | array     | Video related topics.         |
+| videoId        | long      | The Exported Video Id.        |
 
+## Publish Video {#publish-video}
+### Publish Request {#publish-request}
+
+**URL**
+
+```python
+https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/publish
+```
+
+**Method：**POST
+
+**Headers**
+
+| Name of Header | Value                    | Required |
+|-----------------|--------------------------|----------|
+| Content-Type    | application/json         | YES      |
+| VIZARDAI_API_KEY| Vizard ai api key        | YES      |
+
+**Body (Raw json)**
+
+| Name           | DataType | Required | Description                                                                                                         |
+|----------------|----------|----------|---------------------------------------------------------------------------------------------------------------------|
+| finalVideoId   | long   | YES      | The exported video Id. See the 'videoId' in response of Step 3.                                                       |
+| publishTime    | long   | NO       | Unix timestamp. If not set, the video will be published immediately. Otherwise, it will be published at 'publishTime'.|
+
+### Publish Response {#publish-response}
+
+**Content-Type**: application/json
+
+**Body**
+
+| Data Name | Data Type      | Description                                                                                                           |
+|-----------|----------------|-----------------------------------------------------------------------------------------------------------------------|
+| code      | int            | -1000: invalid request parameter; <br/>2000: published succeeded; <br/>4001: invalid api key; <br/>4006: illegal parameter|      
+| errMsg    | string         | The error message.|
 
 # Appendix
 
