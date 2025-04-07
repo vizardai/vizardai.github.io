@@ -639,8 +639,8 @@ Click import<br><br>
 ![click-import](/assets/postman/1.1.jpg)<br><br>
 **Step 1.2**
 Choose the Collections file downloaded locally. v2 supports Postman5+, v2.1 supports Postman7+.<br>
-<a href="/assets/postman/openAPI.postman_collection_v2.json" download="openAPI.postman_collection_v2.json">openapi-postman-collection-v2</a><br>
-<a href="/assets/postman/openAPI.postman_collection_v2.1.json" download="openAPI.postman_collection_v2.1.json">openapi-postman-collection-v2.1</a><br><br>
+<a href="/assets/postman/openapi-postman-collection-v2.json" download="openAPI.postman_collection_v2.json">openapi-postman-collection-v2</a><br>
+<a href="/assets/postman/openapi-postman-collection-v2.1.json" download="openAPI.postman_collection_v2.1.json">openapi-postman-collection-v2.1</a><br><br>
 ![choose-collections-file](/assets/postman/1.2.jpg)<br><br>
 **Step 1.3**
 If the import is successful, view the results of the import in Collections and you will see the two interfaces for openAPI.<br><br>
