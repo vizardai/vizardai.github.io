@@ -126,6 +126,9 @@ https://elb-api.vizard.ai/hvizard-server-front/open-api/v1/project/query/{projec
 | videoId        | long      | The Exported Video Id.        |
 
 ## Publish Video {#publish-video}
+
+Publish videos to the TikTok platform.To use this feature, make sure you have at least one TikTok account linked to Vizard. If multiple TikTok accounts are linked, the video will be automatically published to the most recently linked TikTok account. Selecting a specific TikTok account for publishing is not supported.
+
 ### Publish Request {#publish-request}
 
 **URL**
